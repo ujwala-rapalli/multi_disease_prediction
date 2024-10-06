@@ -9,7 +9,12 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 #loading the model
-model1=pickle.load(open('diabetes_model.sav','rb'))
+try:
+    model1 = pickle.load(open('diabetes_model.sav', 'rb'))
+except FileNotFoundError as e:
+    st.error("Model file not found. Please ensure the file is available and try again.")
+
+# model1=pickle.load(open('diabetes_model.sav','rb'))
 model2=pickle.load(open('heart_disease_model.sav','rb'))
 model3=pickle.load(open('parkinsons_model.sav','rb'))
 #sidebar
