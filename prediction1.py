@@ -13,13 +13,19 @@ from streamlit_option_menu import option_menu
  #loading the model
 try:
     model1 = pickle.load(open('diabetes_model.sav', 'rb'))
+except FileNotFoundError:
+    st.error("Diabetes model file not found.")
 
-except FileNotFoundError as e:
-    st.error("Model file not found. Please ensure the file is available and try again.")
+try:
+    model2 = pickle.load(open('heart_disease_model.sav', 'rb'))
+except FileNotFoundError:
+    st.error("Heart disease model file not found.")
 
-# model1=pickle.load(open('diabetes_model.sav','rb'))
-model2=pickle.load(open('heart_disease_model.sav','rb'))
-model3=pickle.load(open('parkinsons_model.sav','rb'))
+try:
+    model3 = pickle.load(open('parkinsons_model.sav', 'rb'))
+except FileNotFoundError:
+    st.error("Parkinsons model file not found.")
+
 #sidebar
 with st.sidebar:
     selected=option_menu('Mutilple Disease prediction system',
