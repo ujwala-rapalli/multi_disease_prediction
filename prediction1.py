@@ -8,12 +8,9 @@ Created on Sat Oct  5 17:30:29 2024
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
-import os
-if os.path.exists('diabetes_model.sav'):
-    st.success("Model file found!")
-    model1 = pickle.load(open('diabetes_model.sav', 'rb'))
-else:
-    st.error("Model file not found in the deployed environment.")
+import joblib
+
+model = joblib.load("diabetes_model.sav")
 
 # #loading the model
 # try:
