@@ -8,12 +8,19 @@ Created on Sat Oct  5 17:30:29 2024
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
-#loading the model
-try:
-    model1 = pickle.load(open('./diabetes_model.sav', 'rb'))
+import os
+if os.path.exists('diabetes_model.sav'):
+    st.success("Model file found!")
+    model1 = pickle.load(open('diabetes_model.sav', 'rb'))
+else:
+    st.error("Model file not found in the deployed environment.")
 
-except FileNotFoundError as e:
-    st.error("Model file not found. Please ensure the file is available and try again.")
+# #loading the model
+# try:
+#     model1 = pickle.load(open('./diabetes_model.sav', 'rb'))
+
+# except FileNotFoundError as e:
+#     st.error("Model file not found. Please ensure the file is available and try again.")
 
 # model1=pickle.load(open('diabetes_model.sav','rb'))
 model2=pickle.load(open('heart_disease_model.sav','rb'))
