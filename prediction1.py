@@ -12,7 +12,7 @@ from streamlit_option_menu import option_menu
 
  #loading the model
 try:
-    model1 = pickle.load(open('diabetes_model.sav', 'rb'))
+    model1 = pickle.load(open('diabetes_model .sav', 'rb'))
 except FileNotFoundError:
     st.error("Diabetes model file not found.")
 
