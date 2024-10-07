@@ -183,6 +183,10 @@ if(selected == 'Parkinsons prediction'):
         
         except ValueError:
             parkinsons_diagnosis = 'Please enter valid numeric values'
+        except NameError as e:
+            st.error(f"NameError encountered: {e}")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
     
     st.success(parkinsons_diagnosis)
 
