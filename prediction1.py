@@ -57,7 +57,7 @@ if(selected=='Diabetes Prediction'):
     
     
   #prediction
-    diab_dignosis=''
+    diab_diagnosis=''
     
     #creting a button
     if st.button('Diabetes Test Result'):
@@ -105,7 +105,7 @@ if(selected=='Heart disease Prediction'):
     with col1:
         thal=st.text_input('Thal')
     
-    heart_dignosis=''
+    heart_diagnosis=''
     if st.button('Heart disease Test Result'):
         try:
             heart_prediction = model2.predict([[int(age), int(sex), int(cp), float(trestbps), float(chol), int(fbs), int(restecg), float(thalach), int(exang), float(oldpeak), int(slope), int(ca), int(thal)]])
@@ -167,7 +167,7 @@ if(selected=='Parkinsons prediction'):
     with col1:
         pe=st.text_input('PE')
         
-    parkinsons_dignosis=''
+    parkinsons_diagnosis=''
     if st.button('Parkinsons Test Result'):
         try:
             parkinsons_prediction = model3.predict([[float(fo), float(fhi), float(flo), float(Jitter), float(rap), float(ppq), float(ddp), float(Shimmer), float(Shimmer_db), float(Shimmer_APQ3), float(Shimmer_APQ5), float(MDVP_APQ), float(Shimmer_DDA), float(NHR), float(HNR), float(rpde), float(dfa), float(spread1), float(spread2), float(d2), float(pe)]])
