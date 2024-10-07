@@ -61,12 +61,17 @@ if(selected=='Diabetes Prediction'):
     
     #creting a button
     if st.button('Diabetes Test Result'):
-        diab_prediction=model1.predict([[preg,glucose,bp,skin,insulin,bmi,function,age]])
-        if(diab_prediction[0]==1):
-            diab_dignosis='The person is Diabetic'
-        else:
-            diab_dignosis='The person is NOT Diabetic'
-    st.success(diab_dignosis)
+        try:
+            diab_prediction = model1.predict([[int(preg), float(glucose), float(bp), float(skin), float(insulin), float(bmi), float(function), int(age)]])
+            if diab_prediction[0] == 1:
+                diab_diagnosis = 'The person is Diabetic'
+            else:
+                diab_diagnosis = 'The person is NOT Diabetic'
+        except ValueError:
+            diab_diagnosis = 'Please enter valid numeric values'
+
+    st.success(diab_diagnosis)
+
     
     
 if(selected=='Heart disease Prediction'):
@@ -102,12 +107,17 @@ if(selected=='Heart disease Prediction'):
     
     heart_dignosis=''
     if st.button('Heart disease Test Result'):
-        heart_prediction=model2.predict([[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]])
-        if(heart_prediction[0]==1):
-            heart_dignosis='The person have Heart Disease'
-        else:
-            heart_dignosis='The person DOES NOT have Heart Disease'
-    st.success(heart_dignosis)
+        try:
+            heart_prediction = model2.predict([[int(age), int(sex), int(cp), float(trestbps), float(chol), int(fbs), int(restecg), float(thalach), int(exang), float(oldpeak), int(slope), int(ca), int(thal)]])
+            if heart_prediction[0] == 1:
+                heart_diagnosis = 'The person has Heart Disease'
+            else:
+                heart_diagnosis = 'The person DOES NOT have Heart Disease'
+        except ValueError:
+            heart_diagnosis = 'Please enter valid numeric values'
+
+    st.success(heart_diagnosis)
+
     
 if(selected=='Parkinsons prediction'):
     st.title('Parkinsons prediction using ML')
@@ -159,13 +169,17 @@ if(selected=='Parkinsons prediction'):
         
     parkinsons_dignosis=''
     if st.button('Parkinsons Test Result'):
-        parkinsons_prediction=model3.predict([[fo,fhi,flo,Jitter,rap,ppq,ddp,Shimmer,Shimmer_dB,Shimmer_APQ3,Shimmer_APQ5,MDVP_APQ,
-             Shimmer_DDA,NHR,HNR,rpde,dfa,spread1,spread2,d2,pe]])
-        if(parkinsons_prediction[0]==1):
-            parkinsons_dignosis='The person have Heart Disease'
-        else:
-            parkinsons_dignosis='The person DOES NOT have Heart Disease'
-    st.success(parkinsons_dignosis)
+        try:
+            parkinsons_prediction = model3.predict([[float(fo), float(fhi), float(flo), float(Jitter), float(rap), float(ppq), float(ddp), float(Shimmer), float(Shimmer_db), float(Shimmer_APQ3), float(Shimmer_APQ5), float(MDVP_APQ), float(Shimmer_DDA), float(NHR), float(HNR), float(rpde), float(dfa), float(spread1), float(spread2), float(d2), float(pe)]])
+            if parkinsons_prediction[0] == 1:
+                parkinsons_diagnosis = 'The person has Parkinson\'s Disease'
+            else:
+                parkinsons_diagnosis = 'The person DOES NOT have Parkinson\'s Disease'
+        except ValueError:
+            parkinsons_diagnosis = 'Please enter valid numeric values'
+
+    st.success(parkinsons_diagnosis)
+ 
     
     
         
