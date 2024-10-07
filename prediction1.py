@@ -117,68 +117,78 @@ if(selected=='Heart disease Prediction'):
             heart_diagnosis = 'Please enter valid numeric values'
 
     st.success(heart_diagnosis)
-
+if(selected == 'Parkinsons prediction'):
+    st.title('Parkinsons Prediction using ML')
+    col1, col2, col3 = st.columns(3)
     
-if(selected=='Parkinsons prediction'):
-    st.title('Parkinsons prediction using ML')
-    col1,col2,col3=st.columns(3)
     with col1:
-        fo=st.text_input('MDVP:Fo(Hz)')
+        fo = st.text_input('MDVP:Fo(Hz)')
     with col2:
-        fhi=st.text_input('MDVP:Fhi(Hz)')
+        fhi = st.text_input('MDVP:Fhi(Hz)')
     with col3:
-        flo=st.text_input('MDVP:Flo(Hz)')
+        flo = st.text_input('MDVP:Flo(Hz)')
     with col1:
-        Jitter=st.text_input('MDVP:Jitter(%)')
+        Jitter = st.text_input('MDVP:Jitter(%)')
     with col2:
-        Jitter_Abs=st.text_input('MDVP:Jitter(Abs)')
+        Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
     with col3:
-        rap=st.text_input('MDVP:RAP')
+        rap = st.text_input('MDVP:RAP')
     with col1:
-        ppq=st.text_input('MDVP:PPQ')
+        ppq = st.text_input('MDVP:PPQ')
     with col2:
-        ddp=st.text_input('Jitter:DDP')
+        ddp = st.text_input('Jitter:DDP')
     with col3:
-        Shimmer=st.text_input('MDVP:Shimmer')
+        Shimmer = st.text_input('MDVP:Shimmer')
     with col1:
-        Shimmer_db=st.text_input('MDVP:Shimmer(dB)')
+        Shimmer_db = st.text_input('MDVP:Shimmer(dB)')
     with col2:
-        Shimmer_APQ3=st.text_input('Shimmer:APQ3')
+        Shimmer_APQ3 = st.text_input('Shimmer:APQ3')
     with col3:
-        Shimmer_APQ5=st.text_input('Shimmer:APQ5')
+        Shimmer_APQ5 = st.text_input('Shimmer:APQ5')
     with col1:
-        MDVP_APQ=st.text_input('MDVP:APQ')
+        MDVP_APQ = st.text_input('MDVP:APQ')
     with col2:
-        Shimmer_DDA=st.text_input('Shimmer:DDA')
+        Shimmer_DDA = st.text_input('Shimmer:DDA')
     with col3:
-        NHR=st.text_input('NHR')
+        NHR = st.text_input('NHR')
     with col1:
-        HNR=st.text_input('HNR')
+        HNR = st.text_input('HNR')
     with col2:
-        rpde=st.text_input('RPDE')
+        rpde = st.text_input('RPDE')
     with col3:
-        dfa=st.text_input('DFA')
+        dfa = st.text_input('DFA')
     with col1:
-        spread1=st.text_input('spread1')
+        spread1 = st.text_input('Spread1')
     with col2:
-        spread2=st.text_input('spread2')
+        spread2 = st.text_input('Spread2')
     with col3:
-        d2=st.text_input('D2')
+        d2 = st.text_input('D2')
     with col1:
-        pe=st.text_input('PE')
+        pe = st.text_input('PE')
         
-    parkinsons_diagnosis=''
+    parkinsons_diagnosis = ''
+    
     if st.button('Parkinsons Test Result'):
         try:
-            parkinsons_prediction = model3.predict([[float(fo), float(fhi), float(flo), float(Jitter), float(rap), float(ppq), float(ddp), float(Shimmer), float(Shimmer_db), float(Shimmer_APQ3), float(Shimmer_APQ5), float(MDVP_APQ), float(Shimmer_DDA), float(NHR), float(HNR), float(rpde), float(dfa), float(spread1), float(spread2), float(d2), float(pe)]])
+            # Convert input values to floats before passing to the model
+            parkinsons_prediction = model3.predict([[float(fo), float(fhi), float(flo), float(Jitter), float(rap), float(ppq), float(ddp), 
+                                                     float(Shimmer), float(Shimmer_db), float(Shimmer_APQ3), float(Shimmer_APQ5), 
+                                                     float(MDVP_APQ), float(Shimmer_DDA), float(NHR), float(HNR), float(rpde), 
+                                                     float(dfa), float(spread1), float(spread2), float(d2), float(pe)]])
+            
             if parkinsons_prediction[0] == 1:
                 parkinsons_diagnosis = 'The person has Parkinson\'s Disease'
             else:
                 parkinsons_diagnosis = 'The person DOES NOT have Parkinson\'s Disease'
+        
         except ValueError:
             parkinsons_diagnosis = 'Please enter valid numeric values'
-
+    
     st.success(parkinsons_diagnosis)
+
+
+    
+
  
     
     
