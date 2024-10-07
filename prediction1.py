@@ -117,79 +117,85 @@ if(selected=='Heart disease Prediction'):
             heart_diagnosis = 'Please enter valid numeric values'
 
     st.success(heart_diagnosis)
-if(selected == 'Parkinsons prediction'):
+if selected == 'Parkinsons prediction':
     st.title('Parkinsons Prediction using ML')
     col1, col2, col3 = st.columns(3)
-    
+
+    # Input fields with default values set
     with col1:
-        fo = st.text_input('MDVP:Fo(Hz)')
+        fo = st.number_input('MDVP:Fo(Hz)', value=0.0)
     with col2:
-        fhi = st.text_input('MDVP:Fhi(Hz)')
+        fhi = st.number_input('MDVP:Fhi(Hz)', value=0.0)
     with col3:
-        flo = st.text_input('MDVP:Flo(Hz)')
+        flo = st.number_input('MDVP:Flo(Hz)', value=0.0)
     with col1:
-        Jitter = st.text_input('MDVP:Jitter(%)')
+        jitter = st.number_input('MDVP:Jitter(%)', value=0.0)
     with col2:
-        Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
+        jitter_abs = st.number_input('MDVP:Jitter(Abs)', value=0.0)
     with col3:
-        rap = st.text_input('MDVP:RAP')
+        rap = st.number_input('MDVP:RAP', value=0.0)
     with col1:
-        ppq = st.text_input('MDVP:PPQ')
+        ppq = st.number_input('MDVP:PPQ', value=0.0)
     with col2:
-        ddp = st.text_input('Jitter:DDP')
+        ddp = st.number_input('Jitter:DDP', value=0.0)
     with col3:
-        Shimmer = st.text_input('MDVP:Shimmer')
+        shimmer = st.number_input('MDVP:Shimmer', value=0.0)
     with col1:
-        Shimmer_db = st.text_input('MDVP:Shimmer(dB)')
+        shimmer_db = st.number_input('MDVP:Shimmer(dB)', value=0.0)
     with col2:
-        Shimmer_APQ3 = st.text_input('Shimmer:APQ3')
+        shimmer_apq3 = st.number_input('Shimmer:APQ3', value=0.0)
     with col3:
-        Shimmer_APQ5 = st.text_input('Shimmer:APQ5')
+        shimmer_apq5 = st.number_input('Shimmer:APQ5', value=0.0)
     with col1:
-        MDVP_APQ = st.text_input('MDVP:APQ')
+        mdvp_apq = st.number_input('MDVP:APQ', value=0.0)
     with col2:
-        Shimmer_DDA = st.text_input('Shimmer:DDA')
+        shimmer_dda = st.number_input('Shimmer:DDA', value=0.0)
     with col3:
-        NHR = st.text_input('NHR')
+        nhr = st.number_input('NHR', value=0.0)
     with col1:
-        HNR = st.text_input('HNR')
+        hnr = st.number_input('HNR', value=0.0)
     with col2:
-        rpde = st.text_input('RPDE')
+        rpde = st.number_input('RPDE', value=0.0)
     with col3:
-        dfa = st.text_input('DFA')
+        dfa = st.number_input('DFA', value=0.0)
     with col1:
-        spread1 = st.text_input('Spread1')
+        spread1 = st.number_input('Spread1', value=0.0)
     with col2:
-        spread2 = st.text_input('Spread2')
+        spread2 = st.number_input('Spread2', value=0.0)
     with col3:
-        d2 = st.text_input('D2')
+        d2 = st.number_input('D2', value=0.0)
     with col1:
-        pe = st.text_input('PE')
-        
+        pe = st.number_input('PE', value=0.0)
+
     parkinsons_diagnosis = ''
-    
+
+    # Prediction button and logic
     if st.button('Parkinsons Test Result'):
         try:
-            # Convert input values to floats before passing to the model
-            parkinsons_prediction = model3.predict([[float(fo), float(fhi), float(flo), float(Jitter), float(rap), float(ppq), float(ddp), 
-                                                     float(Shimmer), float(Shimmer_db), float(Shimmer_APQ3), float(Shimmer_APQ5), 
-                                                     float(MDVP_APQ), float(Shimmer_DDA), float(NHR), float(HNR), float(rpde), 
-                                                     float(dfa), float(spread1), float(spread2), float(d2), float(pe)]])
+            # Convert input values to a list of features for the model
+            input_features = [
+                float(fo), float(fhi), float(flo), float(jitter), float(jitter_abs), float(rap),
+                float(ppq), float(ddp), float(shimmer), float(shimmer_db), float(shimmer_apq3),
+                float(shimmer_apq5), float(mdvp_apq), float(shimmer_dda), float(nhr),
+                float(hnr), float(rpde), float(dfa), float(spread1), float(spread2),
+                float(d2), float(pe)
+            ]
             
+            # Model prediction
+            parkinsons_prediction = model3.predict([input_features])
+            
+            # Generate result text
             if parkinsons_prediction[0] == 1:
                 parkinsons_diagnosis = 'The person has Parkinson\'s Disease'
             else:
                 parkinsons_diagnosis = 'The person DOES NOT have Parkinson\'s Disease'
-        
+
         except ValueError:
             parkinsons_diagnosis = 'Please enter valid numeric values'
-        except NameError as e:
-            st.error(f"NameError encountered: {e}")
         except Exception as e:
             st.error(f"An error occurred: {e}")
-    
-    st.success(parkinsons_diagnosis)
 
+    st.success(parkinsons_diagnosis)
 
     
 
