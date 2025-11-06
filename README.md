@@ -5,18 +5,6 @@ Predict multiple diseases (Diabetes, Heart Disease, Parkinson's) using pre-train
 
 > ⚡ Quick snapshot: this repo includes pre-trained model files (`diabetes_model.sav`, `heart_disease_model.sav`, `parkinsons_model.sav`) and a prediction script (`prediction1.py`). See `requirements.txt` for dependencies.
 
----
-
-## Table of contents
-- [About](#about)  
-- [Features](#features)  
-- [Repo structure](#repo-structure)  
-- [Requirements](#requirements)  
-- [Install & run](#install--run)  
-- [How to use](#how-to-use)  
-- [Notes & tips](#notes--tips)  
-- [Contributing](#contributing)  
-- [License](#license)  
 
 ---
 
@@ -32,4 +20,13 @@ This project provides a small demo of multi-disease prediction using pre-trained
 
 ---
 
-## Repo structure
+
+
+## 🧰 Requirements  
+
+- Python 3.8 or above  
+- pip package manager  
+
+Install dependencies using:  
+```bash
+pip install -r requirements.txt
